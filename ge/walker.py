@@ -159,7 +159,7 @@ class BiasedWalker:
 
         nodes = self.idx  # list(self.g.nodes())
 
-        results = Parallel(n_jobs=workers, verbose=verbose, )(
+        results = Parallel(n_jobs=workers, verbose=verbose, backend='threading')(
             delayed(self._simulate_walks)(nodes, num, walk_length, stay_prob, layers_adj, layers_accept, layers_alias, gamma) for num in
             partition_num(num_walks, workers))
 
